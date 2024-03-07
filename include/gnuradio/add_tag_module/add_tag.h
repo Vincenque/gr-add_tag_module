@@ -1,10 +1,3 @@
-/* -*- c++ -*- */
-/*
- * Copyright 2024 Witold Duda.
- *
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 #ifndef INCLUDED_ADD_TAG_MODULE_ADD_TAG_H
 #define INCLUDED_ADD_TAG_MODULE_ADD_TAG_H
 
@@ -33,6 +26,16 @@ public:
      * creating new instances.
      */
     static sptr make(bool burst = false);
+
+    /*!
+     * \brief Set the burst state
+     *
+     * This method allows you to dynamically change the burst state of the block.
+     *
+     * \param burst The new burst state
+     */
+    virtual void set_burst(bool burst) = 0;
+    virtual bool burst() const = 0;
 };
 
 } // namespace add_tag_module

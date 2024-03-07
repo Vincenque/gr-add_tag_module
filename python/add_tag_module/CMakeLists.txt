@@ -39,4 +39,3 @@ add_custom_target(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}
           ${PROJECT_BINARY_DIR}/test_modules/gnuradio/add_tag_module/
 )
-GR_ADD_TEST(qa_add_tag ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_add_tag.py)

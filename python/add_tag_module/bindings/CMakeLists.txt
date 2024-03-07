@@ -42,4 +42,4 @@ add_custom_command(TARGET add_tag_module_python POST_BUILD
     ${PROJECT_BINARY_DIR}/test_modules/gnuradio/add_tag_module/
 )
 
-install(TARGETS add_tag_module_python DESTINATION ${GR_PYTHON_DIR}/gnuradio/add_tag_module COMPONENT pythonapi)
+install(TARGETS add_tag_module_python DESTINATION ${GR_PYTHON_DIR}/add_tag_module COMPONENT pythonapi)
