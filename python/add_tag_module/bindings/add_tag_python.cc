@@ -26,6 +26,7 @@ void bind_add_tag(py::module& m)
         .def(py::init(&add_tag::make),
             py::arg("burst"),
             D(add_tag,make))
+            
         .def("set_burst",
              &add_tag::set_burst,
              py::arg("burst"),
