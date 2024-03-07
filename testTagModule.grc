@@ -100,7 +100,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    burst: burst
+    burst: 'True'
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
