@@ -1,5 +1,5 @@
 # gr-add_tag_module
-
+It is a simple module to add a tag (to a 'Tagged File Sink' will record) when button is pressed to a stream in C++ to make it sure it works as fast as possible.
 To build:
 ```
 mkdir build 
