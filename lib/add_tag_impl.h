@@ -12,7 +12,6 @@ class add_tag_impl : public add_tag
 private:
     bool d_burst;
     bool d_burst_state;
-    std::chrono::steady_clock::time_point d_last_print_time; 
 
 public:
     add_tag_impl(bool burst);

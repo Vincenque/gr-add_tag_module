@@ -9,7 +9,6 @@
 #include <gnuradio/io_signature.h>
 #include <pmt/pmt.h>
 #include <iostream> // Include the iostream library
-#include <chrono> // Include the chrono library
 
 namespace gr {
 namespace add_tag_module {
@@ -32,8 +31,7 @@ add_tag_impl::add_tag_impl(bool burst)
                      gr::io_signature::make(
                          4 /* min outputs */, 4 /*max outputs */, sizeof(output_type))),
       d_burst(burst),
-      d_burst_state(false),
-      d_last_print_time(std::chrono::steady_clock::now()) // Initialize the last print time to the current time
+      d_burst_state(false)
 {
     d_burst = burst;
 }
@@ -47,26 +45,6 @@ int add_tag_impl::work(int noutput_items,
                        gr_vector_const_void_star& input_items,
                        gr_vector_void_star& output_items)
 {
-    // Get the current time
-    auto now = std::chrono::steady_clock::now();
-
-    // Calculate the time difference since the last print
-    auto time_diff = std::chrono::duration_cast<std::chrono::seconds>(now - d_last_print_time).count();
-
-    // If at least one second has passed since the last print
-    if (time_diff >= 1) {
-        // Print the values of d_burst and d_burst_state to the console
-        std::cout << "d_burst: " << d_burst << ", d_burst_state: " << d_burst_state << std::endl;
-
-        // Get the current time in a human-readable format
-        auto now_c = std::chrono::system_clock::now();
-        std::time_t now_ct = std::chrono::system_clock::to_time_t(now_c);
-        std::cout << "Current time: " << std::ctime(&now_ct) << std::endl;
-
-        // Update the last print time
-        d_last_print_time = now;
-    }
-
     if (d_burst != d_burst_state) {
         d_burst_state = d_burst;
         pmt::pmt_t key = pmt::string_to_symbol("burst");
