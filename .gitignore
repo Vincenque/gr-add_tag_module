@@ -3,3 +3,4 @@ build
 .conda/
 __pycache__/
 *.py
+.dat
