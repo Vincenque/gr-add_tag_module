@@ -38,7 +38,7 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: ''
+    label: 'burst '
     pressed: '1'
     released: '0'
     type: int
@@ -47,26 +47,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 12.0]
-    rotation: 0
-    state: disabled
-- name: burst
-  id: variable_qtgui_check_box
-  parameters:
-    comment: ''
-    'false': 'False'
-    gui_hint: ''
-    label: ''
-    'true': 'True'
-    type: bool
-    value: 'True'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
     coordinate: [432, 12.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: samp_rate
   id: variable
   parameters:
@@ -85,7 +68,7 @@ blocks:
     comment: ''
     formatter: None
     gui_hint: ''
-    label: burst
+    label: 'burst '
     type: int
     value: burst
   states:
@@ -100,7 +83,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    burst: 'True'
+    burst: burst
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
