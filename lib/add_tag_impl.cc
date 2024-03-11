@@ -51,13 +51,18 @@ int add_tag_impl::work(int noutput_items,
         pmt::pmt_t value = pmt::from_bool(d_burst_state);
         for (int i = 0; i < 4; ++i) {
             add_item_tag(i, nitems_written(i), key, value);
-            auto in = static_cast<const input_type*>(input_items[i]);
-            auto out = static_cast<output_type*>(output_items[i]);
-            std::copy(in, in + noutput_items, out);
         }
     }
+
+    for (int i = 0; i < 4; ++i) {
+        const input_type* in = static_cast<const input_type*>(input_items[i]);
+        output_type* out = static_cast<output_type*>(output_items[i]);
+        std::copy(in, in + noutput_items, out);
+    }
+
     return noutput_items;
 }
+
 
 } /* namespace add_tag_module */
 } /* namespace gr */
