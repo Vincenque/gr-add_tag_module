@@ -1,7 +1,7 @@
 # gr-add_tag_module
 It is a simple module to add a tag (to a 'Tagged File Sink' which will record) when button is pressed to a stream in C++ to make it sure it works as fast as possible.
 Tested on GNU Radio Companion 3.10.7.0 (Python 3.10.12).
-To build:
+To build and run test:
 ```
 mkdir build 
 cd build 
@@ -16,11 +16,11 @@ try:
 except ModuleNotFoundError:
     pass
 ' | sudo tee /usr/local/lib/python3.10/dist-packages/gnuradio/add_tag_module/__init__.py > /dev/null
-gnuradio-companion
+gnuradio-companion ../examples/testTagModule.grc
 ```
 
 
-To rebuild (in build folder):
+To rebuild (in build folder) and run test:
 ```
 sudo make uninstall
 cd ..
@@ -39,5 +39,7 @@ try:
 except ModuleNotFoundError:
     pass
 ' | sudo tee /usr/local/lib/python3.10/dist-packages/gnuradio/add_tag_module/__init__.py > /dev/null
-gnuradio-companion
+gnuradio-companion ../examples/testTagModule.grc
 ```
+
+
