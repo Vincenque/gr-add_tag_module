@@ -24,8 +24,11 @@ public:
      * constructor is in a private implementation
      * class. add_tag_module::add_tag::make is the public interface for
      * creating new instances.
+     * \param itemsize size of the input and output items
+     * \param burst The new burst state
      */
-    static sptr make(bool burst = false);
+    static sptr make(size_t itemsize, bool burst = false);
+    
 
     /*!
      * \brief Set the burst state

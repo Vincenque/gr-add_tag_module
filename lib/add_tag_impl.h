@@ -10,11 +10,13 @@ namespace add_tag_module {
 class add_tag_impl : public add_tag
 {
 private:
+    size_t d_itemsize;
     bool d_burst;
     bool d_burst_state;
+    unsigned int d_num_ports;
 
 public:
-    add_tag_impl(bool burst);
+    add_tag_impl(size_t itemsize, bool burst);
     ~add_tag_impl();
 
     void set_burst(bool burst) override

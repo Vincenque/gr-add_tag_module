@@ -15,23 +15,24 @@ namespace add_tag_module {
 
 using input_type = gr_complex;
 using output_type = gr_complex;
-add_tag::sptr add_tag::make(bool burst)
+add_tag::sptr add_tag::make(size_t itemsize, bool burst)
 {
-    return gnuradio::make_block_sptr<add_tag_impl>(burst);
+    return gnuradio::make_block_sptr<add_tag_impl>(itemsize, burst);
 }
 
 
 /*
  * The private constructor
  */
-add_tag_impl::add_tag_impl(bool burst)
+add_tag_impl::add_tag_impl(size_t itemsize, bool burst)
     : gr::sync_block("add_tag",
                      gr::io_signature::make(
-                         4 /* min inputs */, 4 /* max inputs */, sizeof(input_type)),
+                         1 /* min inputs */, -1 /* max inputs */, sizeof(input_type)),
                      gr::io_signature::make(
-                         4 /* min outputs */, 4 /*max outputs */, sizeof(output_type))),
+                         1 /* min outputs */, -1 /*max outputs */, sizeof(output_type))),
       d_burst(burst),
-      d_burst_state(false)
+      d_burst_state(false),
+      d_num_ports(1)
 {
     d_burst = burst;
 }
@@ -49,12 +50,12 @@ int add_tag_impl::work(int noutput_items,
         d_burst_state = d_burst;
         pmt::pmt_t key = pmt::string_to_symbol("burst");
         pmt::pmt_t value = pmt::from_bool(d_burst_state);
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < int(d_num_ports); ++i) {
             add_item_tag(i, nitems_written(i), key, value);
         }
     }
 
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < int(d_num_ports); ++i) {
         const input_type* in = static_cast<const input_type*>(input_items[i]);
         output_type* out = static_cast<output_type*>(output_items[i]);
         std::copy(in, in + noutput_items, out);

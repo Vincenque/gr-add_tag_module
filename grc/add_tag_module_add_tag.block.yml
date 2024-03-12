@@ -3,6 +3,22 @@ label: Add Tag
 category: '[Custom Modules]'
 
 parameters:
+- id: type
+  label: Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+      size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int, gr.sizeof_short,
+          gr.sizeof_char]
+- id: num_ports
+  label: Number of Ports
+  dtype: int
+  default: 1
+- id: vlen
+  label: Vector Length
+  dtype: int
+  default: '1'
+  hide: ${ 'part' if vlen == 1 else 'none' }
 - id: burst
   label: Burst State
   dtype: bool
@@ -10,36 +26,24 @@ parameters:
   options: ['False', 'True']
 
 inputs:
-- label: in1
-  domain: stream
-  dtype: complex
-- label: in2
-  domain: stream
-  dtype: complex
-- label: in3
-  domain: stream
-  dtype: complex
-- label: in4
-  domain: stream
-  dtype: complex
+- domain: stream
+  dtype: ${ type }
+  vlen: ${ vlen }
+  multiplicity: ${ num_ports }
+
 outputs:
-- label: out1
-  domain: stream
-  dtype: complex
-- label: out2
-  domain: stream
-  dtype: complex
-- label: out3
-  domain: stream
-  dtype: complex
-- label: out4
-  domain: stream
-  dtype: complex
+- domain: stream
+  dtype: ${ type }
+  vlen: ${ vlen }
+  multiplicity: ${ num_ports }
+
+asserts:
+- ${ vlen > 0 }
 
 templates:
   imports: from gnuradio import add_tag_module
   make: |- 
-    add_tag_module.add_tag(${burst})
+    add_tag_module.add_tag(${type.size}*${vlen},${burst})
     self.${id}.set_burst(${burst})
   callbacks:
   - set_burst(${burst})
@@ -48,7 +52,7 @@ cpp_templates:
     includes: ['#include <gnuradio/add_tag_module/add_tag.h>']
     declarations: 'add_tag_module::add_tag::sptr ${id};'
     make: |-
-        this->${id} = add_tag_module::add_tag::make(${burst});
+        this->${id} = add_tag_module::add_tag::make(${type.size}*${vlen},${burst});
         self->${id}.set_burst(${burst});
     callbacks:
     - set_burst(${burst})

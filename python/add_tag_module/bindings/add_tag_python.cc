@@ -5,7 +5,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(add_tag.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(ed6e15606d22607e8ecd66219f04805f)                     */
+/* BINDTOOL_HEADER_FILE_HASH(29f018d417a7c9dc4d9e1caf9b2c711c)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -24,9 +24,9 @@ void bind_add_tag(py::module& m)
     py::class_<add_tag, gr::sync_block, gr::block, gr::basic_block,
         std::shared_ptr<add_tag>>(m, "add_tag", D(add_tag))
         .def(py::init(&add_tag::make),
+            py::arg("itemsize"),
             py::arg("burst"),
-            D(add_tag,make))
-            
+            D(add_tag,make)) 
         .def("set_burst",
              &add_tag::set_burst,
              py::arg("burst"),
