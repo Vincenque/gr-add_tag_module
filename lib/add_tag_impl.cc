@@ -15,16 +15,16 @@ namespace add_tag_module {
 
 using input_type = gr_complex;
 using output_type = gr_complex;
-add_tag::sptr add_tag::make(size_t itemsize, bool burst)
+add_tag::sptr add_tag::make(size_t itemsize, int num_ports, bool burst)
 {
-    return gnuradio::make_block_sptr<add_tag_impl>(itemsize, burst);
+    return gnuradio::make_block_sptr<add_tag_impl>(itemsize, num_ports, burst);
 }
 
 
 /*
  * The private constructor
  */
-add_tag_impl::add_tag_impl(size_t itemsize, bool burst)
+add_tag_impl::add_tag_impl(size_t itemsize, int num_ports, bool burst)
     : gr::sync_block("add_tag",
                      gr::io_signature::make(
                          1 /* min inputs */, -1 /* max inputs */, sizeof(input_type)),
@@ -32,8 +32,9 @@ add_tag_impl::add_tag_impl(size_t itemsize, bool burst)
                          1 /* min outputs */, -1 /*max outputs */, sizeof(output_type))),
       d_burst(burst),
       d_burst_state(false),
-      d_num_ports(1)
+      d_num_ports(num_ports)
 {
+    std::cout << "int(itemsize) = " << int(itemsize) << std::endl;
     d_burst = burst;
 }
 

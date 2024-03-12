@@ -16,7 +16,7 @@ private:
     unsigned int d_num_ports;
 
 public:
-    add_tag_impl(size_t itemsize, bool burst);
+    add_tag_impl(size_t itemsize, int num_ports, bool burst);
     ~add_tag_impl();
 
     void set_burst(bool burst) override

@@ -43,7 +43,7 @@ asserts:
 templates:
   imports: from gnuradio import add_tag_module
   make: |- 
-    add_tag_module.add_tag(${type.size}*${vlen},${burst})
+    add_tag_module.add_tag(${type.size}*${vlen},${num_ports},${burst})
     self.${id}.set_burst(${burst})
   callbacks:
   - set_burst(${burst})
@@ -52,7 +52,7 @@ cpp_templates:
     includes: ['#include <gnuradio/add_tag_module/add_tag.h>']
     declarations: 'add_tag_module::add_tag::sptr ${id};'
     make: |-
-        this->${id} = add_tag_module::add_tag::make(${type.size}*${vlen},${burst});
+        this->${id} = add_tag_module::add_tag::make(${type.size}*${vlen},${num_ports},${burst});
         self->${id}.set_burst(${burst});
     callbacks:
     - set_burst(${burst})

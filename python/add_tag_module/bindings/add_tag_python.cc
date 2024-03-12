@@ -5,7 +5,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(add_tag.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(29f018d417a7c9dc4d9e1caf9b2c711c)                     */
+/* BINDTOOL_HEADER_FILE_HASH(e788f0977f27d146650b8c514016773d)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -25,6 +25,7 @@ void bind_add_tag(py::module& m)
         std::shared_ptr<add_tag>>(m, "add_tag", D(add_tag))
         .def(py::init(&add_tag::make),
             py::arg("itemsize"),
+            py::arg("num_ports"),
             py::arg("burst"),
             D(add_tag,make)) 
         .def("set_burst",

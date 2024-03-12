@@ -25,9 +25,10 @@ public:
      * class. add_tag_module::add_tag::make is the public interface for
      * creating new instances.
      * \param itemsize size of the input and output items
+     * \param num_ports number of the input and output ports
      * \param burst The new burst state
      */
-    static sptr make(size_t itemsize, bool burst = false);
+    static sptr make(size_t itemsize, int num_ports, bool burst = false);
     
 
     /*!
