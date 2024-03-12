@@ -15,7 +15,7 @@ import os
 # import pybind11 generated symbols into the add_tag_module namespace
 try:
     # this might fail if the module is python-only
-    from .add_tag_module_python import *
+    from add_tag_module.add_tag_module_python import *
 except ModuleNotFoundError:
     pass
 
