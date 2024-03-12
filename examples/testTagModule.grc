@@ -137,7 +137,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 148.0]
+    coordinate: [720, 148.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_interleaved_short_0_0
@@ -154,7 +154,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 212.0]
+    coordinate: [720, 212.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_interleaved_short_0_0_0
@@ -171,7 +171,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 276.0]
+    coordinate: [720, 276.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_interleaved_short_0_0_0_0
@@ -188,7 +188,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 340.0]
+    coordinate: [720, 340.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -210,7 +210,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [24, 228.0]
+    coordinate: [48, 220.0]
     rotation: 0
     state: true
 - name: blocks_tagged_file_sink_0
@@ -226,7 +226,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 156.0]
+    coordinate: [912, 156.0]
     rotation: 0
     state: enabled
 - name: blocks_tagged_file_sink_0_0
@@ -242,7 +242,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 220.0]
+    coordinate: [912, 220.0]
     rotation: 0
     state: enabled
 - name: blocks_tagged_file_sink_0_0_0
@@ -258,7 +258,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 284.0]
+    coordinate: [912, 284.0]
     rotation: 0
     state: enabled
 - name: blocks_tagged_file_sink_0_0_0_0
@@ -274,7 +274,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 348.0]
+    coordinate: [912, 348.0]
     rotation: 0
     state: enabled
 - name: blocks_throttle2_0
@@ -295,7 +295,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [224, 252.0]
+    coordinate: [224, 244.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -392,7 +392,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 396.0]
+    coordinate: [720, 404.0]
     rotation: 0
     state: true
 
