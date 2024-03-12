@@ -1,5 +1,8 @@
 # gr-add_tag_module
 It is a simple module to add a tag (to a 'Tagged File Sink' which will record) when button is pressed to a stream in C++ to make it sure it works as fast as possible.
+
+If you want to make sure that data going to multiple 'Tagged File Sink's is being saved synchronically use only one 'Add Tag' and change number of ports. Every OutputSignal[n] = InputSignal[n] for n = {1, number of ports}.
+
 Tested on GNU Radio Companion 3.10.7.0 (Python 3.10.12).
 To build and run test:
 ```
