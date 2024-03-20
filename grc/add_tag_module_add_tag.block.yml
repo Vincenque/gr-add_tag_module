@@ -24,6 +24,13 @@ parameters:
   dtype: bool
   default: 'False'
   options: ['False', 'True']
+- id: number_of_samples_to_record
+  label: Number Of Samples To Record
+  dtype: int
+  default: '0'
+- id: file
+  label: File name
+  dtype: file_save
 
 inputs:
 - domain: stream
@@ -43,18 +50,22 @@ asserts:
 templates:
   imports: from gnuradio import add_tag_module
   make: |- 
-    add_tag_module.add_tag(${type.size}*${vlen},${num_ports},${burst})
+    add_tag_module.add_tag(${type.size}*${vlen},${num_ports},${burst},${number_of_samples_to_record},${file})
     self.${id}.set_burst(${burst})
+    self.${id}.set_filename(${file})
   callbacks:
   - set_burst(${burst})
+  - set_filename(${file})
 
 cpp_templates:
     includes: ['#include <gnuradio/add_tag_module/add_tag.h>']
     declarations: 'add_tag_module::add_tag::sptr ${id};'
     make: |-
-        this->${id} = add_tag_module::add_tag::make(${type.size}*${vlen},${num_ports},${burst});
+        this->${id} = add_tag_module::add_tag::make(${type.size}*${vlen},${num_ports},${burst},${number_of_samples_to_record},${file});
         self->${id}.set_burst(${burst});
+        self->${id}.set_filename(${file})
     callbacks:
     - set_burst(${burst})
+    - set_filename(${file})
 
 file_format: 1

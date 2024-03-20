@@ -3,6 +3,9 @@
 
 #include <gnuradio/add_tag_module/add_tag.h>
 #include <chrono> // Include the chrono library
+#include <string>
+#include <iostream>
+using namespace std;
 
 namespace gr {
 namespace add_tag_module {
@@ -12,11 +15,16 @@ class add_tag_impl : public add_tag
 private:
     size_t d_itemsize;
     bool d_burst;
-    bool d_burst_state;
     unsigned int d_num_ports;
+    int samples_count;
+    bool samples_recorded;
+    int d_number_of_samples_to_record;
+    bool recording;
+    string d_filename;
+    string d_previous_filename;
 
 public:
-    add_tag_impl(size_t itemsize, int num_ports, bool burst);
+    add_tag_impl(size_t itemsize, int num_ports, bool burst, int number_of_samples_to_record, string filename);
     ~add_tag_impl();
 
     void set_burst(bool burst) override
@@ -24,6 +32,12 @@ public:
         d_burst = burst;
     }
     bool burst() const override { return d_burst; }
+
+    void set_filename(string filename) override
+    {
+        d_filename = filename;
+    }
+    string filename() const override { return d_filename; }
 
     // Where all the action really happens
     int work(int noutput_items,
