@@ -1,14 +1,7 @@
-/* -*- c++ -*- */
-/*
- * Copyright 2024 Witold Duda.
- *
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
-
 #include "add_tag_impl.h"
 #include <gnuradio/io_signature.h>
 #include <pmt/pmt.h>
-#include <iostream> // Include the iostream library
+#include <iostream>
 
 namespace gr {
 namespace add_tag_module {
@@ -65,22 +58,7 @@ int add_tag_impl::work(int noutput_items,
     if (d_burst == true) {
         recording = true;
     }
-    if (recording == true) {
-        if (samples_count == 0) {
-            std::cout << "Starting recording to file: " << d_filename << "*_" << index_of_file << std::endl;
-            index_of_file++;
-        }
-        pmt::pmt_t key = pmt::string_to_symbol("burst");
-        pmt::pmt_t value = pmt::from_bool(true);
-        for (int i = 0; i < int(d_num_ports); ++i) {
-            add_item_tag(i, nitems_written(i), key, value);
-        }
-    }
 
-
-    if (recording == true) {
-        samples_count += noutput_items + 1;
-    }
     if (samples_count >= d_number_of_samples_to_record && samples_recorded == false) {
         std::cout << "Number of recorded samples:" << samples_count << std::endl;
         samples_recorded = true;
@@ -93,6 +71,22 @@ int add_tag_impl::work(int noutput_items,
         recording = false;
         samples_count = 0;
         samples_recorded = false;
+    }else if (recording == true) {
+        if (samples_count == 0) {
+            std::cout << "Starting recording to file: " << d_filename << "*_"
+                      << index_of_file << std::endl;
+            index_of_file++;
+        }
+        pmt::pmt_t key = pmt::string_to_symbol("burst");
+        pmt::pmt_t value = pmt::from_bool(true);
+        for (int i = 0; i < int(d_num_ports); ++i) {
+            add_item_tag(i, nitems_written(i), key, value);
+        }
+    }
+
+
+    if (recording == true) {
+        samples_count += noutput_items;
     }
 
     for (int i = 0; i < int(d_num_ports); ++i) {

@@ -2,7 +2,7 @@
 #define INCLUDED_ADD_TAG_MODULE_ADD_TAG_IMPL_H
 
 #include <gnuradio/add_tag_module/add_tag.h>
-#include <chrono> // Include the chrono library
+#include <chrono>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -38,7 +38,6 @@ public:
     void set_filename(string filename) override { d_filename = filename; }
     string filename() const override { return d_filename; }
 
-    // Where all the action really happens
     int work(int noutput_items,
              gr_vector_const_void_star& input_items,
              gr_vector_void_star& output_items);
