@@ -1,4 +1,5 @@
 #!/bin/sh
+mkdir build
 cd build
 sudo make uninstall
 cd ..
@@ -9,4 +10,4 @@ cmake ..
 make -j4 
 sudo make install 
 sudo ldconfig
-gnuradio-companion ../examples/testTagModule.grc
+gnuradio-companion ../examples/testTagModule.grc ../examples/testTagModuleWithModifiedTaggedFileSink.grc

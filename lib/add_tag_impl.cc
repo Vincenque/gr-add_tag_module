@@ -42,7 +42,8 @@ add_tag_impl::add_tag_impl(size_t itemsize,
       d_number_of_samples_to_record(number_of_samples_to_record),
       recording(false),
       d_filename(filename),
-      d_previous_filename(filename)
+      d_previous_filename(filename),
+      index_of_file(0)
 {
     d_burst = burst;
 }
@@ -59,13 +60,15 @@ int add_tag_impl::work(int noutput_items,
         recording = false;
         samples_count = 0;
         samples_recorded = false;
+        index_of_file = 0;
     }
     if (d_burst == true) {
         recording = true;
     }
     if (recording == true) {
         if (samples_count == 0) {
-            std::cout << "Starting recording to file: " << d_filename << std::endl;
+            std::cout << "Starting recording to file: " << d_filename << "*_" << index_of_file << std::endl;
+            index_of_file++;
         }
         pmt::pmt_t key = pmt::string_to_symbol("burst");
         pmt::pmt_t value = pmt::from_bool(true);
@@ -86,8 +89,10 @@ int add_tag_impl::work(int noutput_items,
         for (int i = 0; i < int(d_num_ports); ++i) {
             add_item_tag(i, nitems_written(i), key, value);
         }
-        recording = false;
         std::cout << "Recording ended." << std::endl << std::endl;
+        recording = false;
+        samples_count = 0;
+        samples_recorded = false;
     }
 
     for (int i = 0; i < int(d_num_ports); ++i) {

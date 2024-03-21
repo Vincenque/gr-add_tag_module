@@ -38,7 +38,7 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Burst
+    label: Start recording
     pressed: '1'
     released: '0'
     type: bool
