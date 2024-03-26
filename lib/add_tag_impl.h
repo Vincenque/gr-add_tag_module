@@ -23,6 +23,7 @@ private:
     string d_filename;
     string d_previous_filename;
     int index_of_file;
+    bool d_previous_state = false;
 
 public:
     add_tag_impl(size_t itemsize,

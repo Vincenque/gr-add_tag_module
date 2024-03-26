@@ -82,6 +82,18 @@ blocks:
     coordinate: [280, 12.0]
     rotation: 0
     state: true
+- name: number_of_samples_to_record
+  id: variable
+  parameters:
+    comment: ''
+    value: 2e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 12.0]
+    rotation: 0
+    state: true
 - name: samp_rate
   id: variable
   parameters:
@@ -117,7 +129,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '4'
-    number_of_samples_to_record: int(2e6)
+    number_of_samples_to_record: int(number_of_samples_to_record)
     type: complex
     vlen: '1'
   states:

@@ -55,11 +55,48 @@ int add_tag_impl::work(int noutput_items,
         samples_recorded = false;
         index_of_file = 0;
     }
-    if (d_burst == true) {
+
+    if (d_burst != d_previous_state && d_number_of_samples_to_record == 0) {
+        if (d_burst == true) {
+            std::cout << "Starting recording to file: " << d_filename << "*_"
+                      << index_of_file << std::endl;
+            index_of_file++;
+            recording = true;
+        } else {
+            std::cout << "Number of recorded samples:" << samples_count << std::endl;
+            samples_recorded = true;
+            pmt::pmt_t key = pmt::string_to_symbol("burst");
+            pmt::pmt_t value = pmt::from_bool(false);
+            for (int i = 0; i < int(d_num_ports); ++i) {
+                add_item_tag(i, nitems_written(i), key, value);
+            }
+            std::cout << "Recording ended." << std::endl << std::endl;
+            recording = false;
+            samples_count = 0;
+            samples_recorded = false;
+        }
+        d_previous_state = d_burst;
+    }
+
+    if (d_burst == true && d_number_of_samples_to_record == 0) {
+        pmt::pmt_t key = pmt::string_to_symbol("burst");
+        pmt::pmt_t value = pmt::from_bool(true);
+        for (int i = 0; i < int(d_num_ports); ++i) {
+            add_item_tag(i, nitems_written(i), key, value);
+        }
+
+    } else if (d_burst == false && d_number_of_samples_to_record == 0) {
+        pmt::pmt_t key = pmt::string_to_symbol("burst");
+        pmt::pmt_t value = pmt::from_bool(false);
+        for (int i = 0; i < int(d_num_ports); ++i) {
+            add_item_tag(i, nitems_written(i), key, value);
+        }
+    } else if (d_burst == true && d_number_of_samples_to_record != 0) {
         recording = true;
     }
 
-    if (samples_count >= d_number_of_samples_to_record && samples_recorded == false) {
+    if (d_number_of_samples_to_record > 0 &&
+        samples_count >= d_number_of_samples_to_record && samples_recorded == false) {
         std::cout << "Number of recorded samples:" << samples_count << std::endl;
         samples_recorded = true;
         pmt::pmt_t key = pmt::string_to_symbol("burst");
@@ -71,7 +108,7 @@ int add_tag_impl::work(int noutput_items,
         recording = false;
         samples_count = 0;
         samples_recorded = false;
-    }else if (recording == true) {
+    } else if (recording == true && d_number_of_samples_to_record > 0) {
         if (samples_count == 0) {
             std::cout << "Starting recording to file: " << d_filename << "*_"
                       << index_of_file << std::endl;
@@ -83,7 +120,6 @@ int add_tag_impl::work(int noutput_items,
             add_item_tag(i, nitems_written(i), key, value);
         }
     }
-
 
     if (recording == true) {
         samples_count += noutput_items;
