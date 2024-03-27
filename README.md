@@ -25,6 +25,7 @@ gnuradio-companion ../examples/testTagModule.grc ../examples/testTagModuleWithMo
 
 To rebuild and run test:
 ```
+mkdir build
 cd build
 sudo make uninstall
 cd ..
