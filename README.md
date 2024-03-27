@@ -8,7 +8,11 @@ Best to use with 'Modified Tagged Filk Sink' (https://github.com/Vincenque/gr-mo
 If 'number_of_samples_to_record' is equal to 0 file will be recorded until you hold button. If value is more than 0 you should just push button and then file will be recorded automatically.
 
 Tested on GNU Radio Companion 3.10.7.0 (Python 3.10.12).
-To build and run test:
+To build and run test in terminal:
+```
+sh rebuild.sh
+```
+or also in terminal:
 ```
 mkdir build 
 cd build 
@@ -19,8 +23,7 @@ sudo ldconfig
 gnuradio-companion ../examples/testTagModule.grc ../examples/testTagModuleWithModifiedTaggedFileSink.grc
 ```
 
-
-To rebuild (in build folder) and run test:
+To rebuild and run test:
 ```
 cd build
 sudo make uninstall

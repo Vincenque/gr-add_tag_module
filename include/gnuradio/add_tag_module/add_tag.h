@@ -1,3 +1,4 @@
+// add_tag.h
 #ifndef INCLUDED_ADD_TAG_MODULE_ADD_TAG_H
 #define INCLUDED_ADD_TAG_MODULE_ADD_TAG_H
 
@@ -11,7 +12,7 @@ namespace gr {
 namespace add_tag_module {
 
 /*!
- * \brief <+description of block+>
+ * \brief This class represents a block that adds tags to a GNU Radio flowgraph.
  * \ingroup add_tag_module
  *
  */
@@ -23,12 +24,12 @@ public:
     /*!
      * \brief Return a shared_ptr to a new instance of add_tag_module::add_tag.
      *
-     * \param itemsize size of the input and output items
-     * \param num_ports number of the input and output ports
-     * \param burst The new burst state
-     * \param number_of_samples_to_record Number of samples to record. If equal to 0 do
-     * record when everything when button is pressed. \param filename Name of file used in
-     * gr-modified_tagged_file_sink.
+     * \param itemsize The size of the input and output items in bytes.
+     * \param num_ports The number of input and output ports.
+     * \param burst The initial burst state. If true, the block will start in burst mode.
+     * \param number_of_samples_to_record The number of samples to record. If set to 0,
+     * the block will record until in burst mode. \param filename The name of
+     * the file used for recording the data.
      */
     static sptr make(size_t itemsize,
                      int num_ports,
@@ -38,21 +39,21 @@ public:
 
 
     /*!
-     * \brief Set the burst state
+     * \brief Set the burst state.
      *
      * This method allows you to dynamically change the burst state of the block.
      *
-     * \param burst The new burst state
+     * \param burst The new burst state. If true, the block will switch to burst mode.
      */
     virtual void set_burst(bool burst) = 0;
     virtual bool burst() const = 0;
 
     /*!
-     * \brief Set the file name
+     * \brief Set the file name.
      *
-     * This method allows you to dynamically change the burst state of the block.
+     * This method allows you to dynamically change the file used for recording the data.
      *
-     * \param filename The new filename
+     * \param filename The new filename. Works only with gr-modified_tagged_file_sink.
      */
     virtual void set_filename(string filename) = 0;
     virtual string filename() const = 0;
