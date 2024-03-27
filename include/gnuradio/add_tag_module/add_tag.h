@@ -29,7 +29,7 @@ public:
      * \param burst The initial burst state. If true, the block will start in burst mode.
      * \param number_of_samples_to_record The number of samples to record. If set to 0,
      * the block will record until in burst mode. \param filename The name of
-     * the file used for recording the data.
+     * the file used for recording the data. Works only with gr-modified_tagged_file_sink.
      */
     static sptr make(size_t itemsize,
                      int num_ports,
@@ -53,7 +53,7 @@ public:
      *
      * This method allows you to dynamically change the file used for recording the data.
      *
-     * \param filename The new filename. Works only with gr-modified_tagged_file_sink.
+     * \param filename The new filename.
      */
     virtual void set_filename(string filename) = 0;
     virtual string filename() const = 0;
