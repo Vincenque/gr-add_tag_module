@@ -12,18 +12,7 @@ To build and run test in terminal:
 ```
 sh rebuild.sh
 ```
-or also in terminal:
-```
-mkdir build 
-cd build 
-cmake .. 
-make -j4 
-sudo make install 
-sudo ldconfig
-gnuradio-companion ../examples/testTagModule.grc ../examples/testTagModuleWithModifiedTaggedFileSink.grc
-```
-
-To rebuild and run test:
+or:
 ```
 mkdir build
 cd build
